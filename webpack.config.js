@@ -10,8 +10,11 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                test: /\.scss$/i,
+                use: ['style-loader', // 3. Injects styles into DOM
+                'css-loader', // 2. Turns CSS into commonjs
+                'sass-loader' // 1. Turns SASS into CSS
+            ],
             }
         ]
     }
