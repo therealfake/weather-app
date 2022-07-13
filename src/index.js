@@ -1,22 +1,14 @@
 import './style.scss';
+import fetchWeather from './weather';
+import displayData from './display';
 
-async function fetchWeather(city) {
-    try {
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9ea7f4cb3800cc6901c2fe0669ad0aac`;
-        const response = await fetch(url, {mode: 'cors'});
-        const data = await response.json();
-        const desiredData = {
-            location: data.name + ', ' + data.sys.country,
-            description: data.weather[0].description,
-            temp: data.main.temp,
-            temp_feels_like: data.main.feels_like,
-            wind_speed: data.wind.speed,
-            humidity: data.main.humidity
-        };
-        return desiredData;
-    } catch (error) {
-        console.log('error');
-    }
-}
-fetchWeather('toronto').then(data => console.log(data));
+const cityName = document.getElementById('city-name');
+const searchBtn = document.getElementById('search-btn');
+
+
+searchBtn.addEventListener('click', async () => {
+    const weatherData = await fetchWeather(cityName.value);
+    cityName.value = '';
+    displayData(weatherData);
+});
 
