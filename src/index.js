@@ -1,6 +1,6 @@
-import './style.scss'
+import './style.scss';
 
-async function getWeatherInfo(city) {
+async function fetchWeather(city) {
     try {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9ea7f4cb3800cc6901c2fe0669ad0aac`;
         const response = await fetch(url, {mode: 'cors'});
@@ -12,10 +12,11 @@ async function getWeatherInfo(city) {
             temp_feels_like: data.main.feels_like,
             wind_speed: data.wind.speed,
             humidity: data.main.humidity
-        }
-        return desiredData
+        };
+        return desiredData;
     } catch (error) {
         console.log('error');
     }
 }
-getWeatherInfo('toronto').then(data => console.log(data));
+fetchWeather('toronto').then(data => console.log(data));
+
