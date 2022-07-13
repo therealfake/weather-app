@@ -116,7 +116,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ \"./src/style.scss\");\n\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ \"./src/style.scss\");\n\n\nasync function getWeatherInfo(city) {\n    try {\n        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9ea7f4cb3800cc6901c2fe0669ad0aac`;\n        const response = await fetch(url, {mode: 'cors'});\n        const data = await response.json();\n        const desiredData = {\n            location: data.name + ', ' + data.sys.country,\n            description: data.weather[0].description,\n            temp: data.main.temp,\n            temp_feels_like: data.main.feels_like,\n            wind_speed: data.wind.speed,\n            humidity: data.main.humidity\n        }\n        return desiredData\n    } catch (error) {\n        console.log('error');\n    }\n}\ngetWeatherInfo('toronto').then(data => console.log(data));\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
 
 /***/ })
 
