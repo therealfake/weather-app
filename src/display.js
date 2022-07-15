@@ -17,7 +17,7 @@ function displayData(data) {
 }
 
 async function displayBackground(city) {
-    const url = `https://api.teleport.org/api/urban_areas/slug:${city.toLowerCase()}/images/`;
+    const url = `https://api.teleport.org/api/urban_areas/slug:${formatTeleportRequest(city)}/images/`;
     const response = await fetch(url, {mode: 'cors'});
     const imgData = await response.json();
     document.body.style.background = `linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${imgData.photos[0].image.web})`;
@@ -28,3 +28,6 @@ async function displayBackground(city) {
     document.body.style.height = '100vh';
 }
 
+function formatTeleportRequest(city) {
+    return city.replace(' ', '-').toLowerCase();
+}
