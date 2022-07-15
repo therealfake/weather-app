@@ -17,15 +17,19 @@ function displayData(data) {
 }
 
 async function displayBackground(city) {
-    const url = `https://api.teleport.org/api/urban_areas/slug:${formatTeleportRequest(city)}/images/`;
-    const response = await fetch(url, {mode: 'cors'});
-    const imgData = await response.json();
-    document.body.style.background = `linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${imgData.photos[0].image.web})`;
-    document.body.style.backgroundRepeat = 'no-repeat';
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.overflow = 'hidden';
-    document.body.style.width = 'auto';
-    document.body.style.height = '100vh';
+    try {
+        const url = `https://api.teleport.org/api/urban_areas/slug:${formatTeleportRequest(city)}/images/`;
+        const response = await fetch(url, {mode: 'cors'});
+        const imgData = await response.json();
+        document.body.style.background = `linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${imgData.photos[0].image.web})`;
+        document.body.style.backgroundRepeat = 'no-repeat';
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.overflow = 'hidden';
+        document.body.style.width = 'auto';
+        document.body.style.height = '100vh';
+    } catch (err) {
+        document.body.style.background = 'linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(https://images.theconversation.com/files/232705/original/file-20180820-30593-1nxanpj.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=2000&h=1200.0&fit=crop)';
+    }
 }
 
 function formatTeleportRequest(city) {
