@@ -1,4 +1,4 @@
-export default fetchWeather;
+export { fetchWeather };
 
 async function fetchWeather(city) {
     try {

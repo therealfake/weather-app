@@ -3,6 +3,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: black;
+}
+
 #search-bar {
     position: relative;
     display: flex;
@@ -38,6 +42,7 @@
     grid-template-columns: 2fr 1.25fr;
     grid-template-rows: repeat(5, 1fr);
     font-size: 1.5rem;
+    color: white;
 
     #location,
     #description,
